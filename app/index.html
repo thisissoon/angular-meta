@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sn.meta.e2e" ng-strict-di>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="fragment" content="!">
+    <title>Angular Meta Example</title>
+
+    <!-- build:template
+    <base href="/">
+    /build -->
+    <!-- build:remove -->
+    <base href="/app/">
+    <!-- /build -->
+
+    <!-- build:css css/all.min.css -->
+    <link rel="stylesheet" href="css/all.css">
+    <!-- /build -->
+  </head>
+  <body>
+
+    <a href="#/pageone">Page One</a><br>
+    <a href="#/pagetwo">Page Two</a><br>
+    <ng-view></ng-view>
+
+
+    <!-- build:js:e2e inline components/angular/angular.js --><!-- /build -->
+    <!-- build:js:e2e inline components/angular-mocks/angular-mocks.js --><!-- /build -->
+    <!-- build:js:e2e inline components/angular-route/angular-route.js --><!-- /build -->
+
+    <!-- build:js angular-meta.min.js -->
+    <script src="js/meta.js"></script>
+    <!-- /build -->
+
+    <!-- build:js:e2e inline ../tests/e2e/app.e2e.js --><!-- /build -->
+
+    <script>
+      angular.module('sn.meta.e2e', ['ngRoute', 'sn.meta'])
+
+      .config([
+        '$routeProvider',
+        function ($routeProvider) {
+
+          $routeProvider
+            .when('/pageone', {
+              meta: {
+                description: 'Page one description'
+              }
+            })
+            .when('/pagetwo', {
+              meta: {
+                description: 'Page two description'
+              }
+            })
+            .otherwise({
+              redirectTo: '/pageone'
+            })
+        }
+
+      ])
+    </script>
+
+  </body>
+</html>

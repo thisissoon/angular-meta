@@ -1,0 +1,28 @@
+{
+  "name": "angular-meta",
+  "description": "Dynamically change the page title when using ngRoute",
+  "version": "0.1.1",
+  "homepage": "https://github.com/thisissoon/angular-meta",
+  "license": "MIT",
+  "main": "dist/angular-meta.js",
+  "ignore": [
+    "app",
+    "tests",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitignore",
+    ".jshintrc",
+    ".travis.yml",
+    "Gruntfile.js",
+    "package.json",
+    "scripts.json"
+  ],
+  "private": false,
+  "dependencies": {
+    "angular": ">= 1.2 < 1.5",
+    "angular-route": ">= 1.2 < 1.5"
+  },
+  "devDependencies": {
+    "angular-mocks": ">= 1.2 < 1.5"
+  }
+}
