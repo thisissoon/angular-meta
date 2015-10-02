@@ -39,5 +39,5 @@ describe('sn.meta:meta directive', function() {
   //     $rootScope.$broadcast('$routeChangeError')
   //     expect(element.html()).toEqual(errorText + ' - My Site Name');
   //   });
-  });
+  // });
 });

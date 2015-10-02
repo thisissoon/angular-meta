@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Inspired by angular title {@link https://github.com/thisissoon/angular-title}
- * Angular Meta dyamically updates the document meta data when navigating views
+ * Angular Meta dynamically updates the document meta data when navigating views
  * defined in `ngRoute`'s `$routeProvider`. Simply define the meta data of the
  * page in your `$routeProvider` config using the `meta` key.
  *
@@ -39,7 +39,7 @@ angular.module('sn.meta', [])
  */
 .constant('EVENTS', {
   ROUTE_CHANGE_SUCCESS: '$routeChangeSuccess',
-  ROUTE_CHANGE_ERROR: '$routeChangeError',
+  ROUTE_CHANGE_ERROR: '$routeChangeError'
 })
 /**
  * Meta element directive which updates it's content attribute to
