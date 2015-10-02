@@ -1,64 +1,87 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="sn.meta.e2e" ng-strict-di>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="fragment" content="!">
-    <title>Angular Meta Example</title>
+<!-- build:[ng-app]:e2e myApp.e2e -->
+<!--[if lt IE 8]>      <html lang="en" ng-app="sn.meta" ng-strict-di class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="sn.meta" ng-strict-di class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="sn.meta" ng-strict-di class="no-js"> <!--<![endif]-->
+<!-- /build -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="fragment" content="!">
+  <title>Angular Meta Example</title>
 
-    <!-- build:template
-    <base href="/">
-    /build -->
-    <!-- build:remove -->
-    <base href="/app/">
-    <!-- /build -->
+  <meta name="description" content="Page description. No longer than 155 characters.">
 
-    <!-- build:css css/all.min.css -->
-    <link rel="stylesheet" href="css/all.css">
-    <!-- /build -->
-  </head>
-  <body>
+  <!-- build:template
+  <base href="/">
+  /build -->
+  <!-- build:remove -->
+  <base href="/app/">
+  <!-- /build -->
 
-    <a href="#/pageone">Page One</a><br>
-    <a href="#/pagetwo">Page Two</a><br>
-    <ng-view></ng-view>
+  <!-- build:css css/all.min.css -->
+  <link rel="stylesheet" href="css/all.css">
+  <!-- /build -->
+</head>
+<body>
 
+  <a href="#/pageone">Page One</a><br>
+  <a href="#/pagetwo">Page Two</a><br>
 
-    <!-- build:js:e2e inline components/angular/angular.js --><!-- /build -->
-    <!-- build:js:e2e inline components/angular-mocks/angular-mocks.js --><!-- /build -->
-    <!-- build:js:e2e inline components/angular-route/angular-route.js --><!-- /build -->
+  <ng-view></ng-view>
 
-    <!-- build:js angular-meta.min.js -->
-    <script src="js/meta.js"></script>
-    <!-- /build -->
+  <!--[if lt IE 8]>
+      <p>Your browser is <strong>ancient</strong> and will not work with this site. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-    <!-- build:js:e2e inline ../tests/e2e/app.e2e.js --><!-- /build -->
+  <noscript>
+      <p>JavaScript is either disabled or not supported by your browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or enable JavaScript to improve your experience.</p>
+  </noscript>
 
-    <script>
-      angular.module('sn.meta.e2e', ['ngRoute', 'sn.meta'])
+  <script>
+      document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, "$1$2");
+  </script>
 
-      .config([
-        '$routeProvider',
-        function ($routeProvider) {
+  <!-- build:remove:e2e -->
+  <script src="components/angular/angular.js"></script>
+  <script src="components/angular-route/angular-route.js"></script>
+  <!-- /build -->
 
-          $routeProvider
-            .when('/pageone', {
-              meta: {
-                description: 'Page one description'
-              }
-            })
-            .when('/pagetwo', {
-              meta: {
-                description: 'Page two description'
-              }
-            })
-            .otherwise({
-              redirectTo: '/pageone'
-            })
-        }
+  <!-- build:js:e2e inline components/angular/angular.js --><!-- /build -->
+  <!-- build:js:e2e inline components/angular-mocks/angular-mocks.js --><!-- /build -->
+  <!-- build:js:e2e inline components/angular-route/angular-route.js --><!-- /build -->
 
-      ])
-    </script>
+  <!-- build:js angular-meta.min.js -->
+  <script src="js/meta.js"></script>
+  <!-- /build -->
 
-  </body>
+  <!-- build:js:e2e inline ../tests/e2e/app.e2e.js --><!-- /build -->
+
+  <script>
+    angular.module('sn.meta.e2e', ['ngRoute', 'sn.meta'])
+
+    .config([
+      '$routeProvider',
+      function ($routeProvider) {
+
+        $routeProvider
+          .when('/pageone', {
+            meta: {
+              description: 'Page one description'
+            }
+          })
+          .when('/pagetwo', {
+            meta: {
+              description: 'Page two description'
+            }
+          })
+          .otherwise({
+            redirectTo: '/pageone'
+          })
+      }
+
+    ])
+  </script>
+
+</body>
 </html>

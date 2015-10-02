@@ -31,7 +31,7 @@
  * @module sn.meta
  * @author SOON_
  */
-angular.module('sn.meta', [])
+angular.module('sn.meta', ['ngRoute'])
 /**
  * @constant
  * @property EVENTS
@@ -72,7 +72,6 @@ angular.module('sn.meta', [])
          * @param {Object} current The requested route object
          */
         var onRouteChangeSuccess = function onRouteChangeSuccess($event, current){
-
           var content = '';
 
           if (current &&
@@ -83,7 +82,7 @@ angular.module('sn.meta', [])
             content = current.$$route.meta[$attrs.name];
           }
 
-          $attrs.content = content;
+          $element.attr('content', content);
         };
 
         /**
@@ -93,9 +92,7 @@ angular.module('sn.meta', [])
          * @method onRouteChangeError
          */
         var onRouteChangeError = function onRouteChangeError(){
-
-          $attrs.content = '';
-
+          $element.attr('content', '');
         };
 
         $rootScope.$on(EVENTS.ROUTE_CHANGE_SUCCESS, onRouteChangeSuccess);

@@ -1,7 +1,7 @@
 'use strict';
 
 describe('sn.meta:meta directive', function() {
-  var element, $scope, $rootScope, snTitle;
+  var element, $scope, $location, $rootScope, snTitle;
 
   beforeEach(module('sn.meta'));
 
@@ -10,6 +10,8 @@ describe('sn.meta:meta directive', function() {
 
     $scope = $rootScope.$new();
 
+    $location = $injector.get('$location');
+
     element = '<meta name="description" content="Page description. No longer than 155 characters." />';
 
     element = $compile(element)($scope);
@@ -17,27 +19,35 @@ describe('sn.meta:meta directive', function() {
 
   }));
 
-  // describe('site title defined', function() {
+  describe('meta data defined', function() {
 
-  //   it('should render directive with correct title text', function(){
-  //     $rootScope.$broadcast('$routeChangeSuccess', {
-  //       $$route: {
-  //         title: 'foo'
-  //       }
-  //     })
-  //     expect(element.html()).toEqual('foo - My Site Name');
+    it('should render directive with correct meta data', function(){
+      $rootScope.$broadcast("$routeChangeSuccess", {
+        $$route: {
+          meta: {
+            description: 'pageone description'
+          }
+        }
+      })
+      expect(element.attr('content')).toEqual('pageone description');
 
-  //     $rootScope.$broadcast('$routeChangeSuccess', {
-  //       $$route: {
-  //         title: undefined
-  //       }
-  //     })
-  //     expect(element.html()).toEqual('My Site Name');
-  //   });
+    });
 
-  //   it('should render directive with error title text', function(){
-  //     $rootScope.$broadcast('$routeChangeError')
-  //     expect(element.html()).toEqual(errorText + ' - My Site Name');
-  //   });
-  // });
+    it('should clear meta data on route change error', function(){
+      $rootScope.$broadcast("$routeChangeError");
+      expect(element.attr('content')).toEqual('');
+    });
+
+    it('should NOT update meta if meta tag isn\'t defined in route', function(){
+      $rootScope.$broadcast("$routeChangeSuccess", {
+        $$route: {
+          meta: {
+            another_tag: 'some content'
+          }
+        }
+      })
+      expect(element.attr('content')).not.toEqual('some content');
+    });
+
+  });
 });
