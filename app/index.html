@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<!-- build:[ng-app]:e2e myApp.e2e -->
 <!--[if lt IE 8]>      <html lang="en" ng-app="sn.meta.e2e" ng-strict-di class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="sn.meta.e2e" ng-strict-di class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="sn.meta.e2e" ng-strict-di class="no-js"> <!--<![endif]-->
-<!-- /build -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -42,20 +40,12 @@
       document.documentElement.className = document.documentElement.className.replace(/(^|\s)no-js(\s|$)/, "$1$2");
   </script>
 
-  <!-- build:remove:e2e -->
   <script src="components/angular/angular.js"></script>
   <script src="components/angular-route/angular-route.js"></script>
-  <!-- /build -->
-
-  <!-- build:js:e2e inline components/angular/angular.js --><!-- /build -->
-  <!-- build:js:e2e inline components/angular-mocks/angular-mocks.js --><!-- /build -->
-  <!-- build:js:e2e inline components/angular-route/angular-route.js --><!-- /build -->
 
   <!-- build:js angular-meta.min.js -->
   <script src="js/meta.js"></script>
   <!-- /build -->
-
-  <!-- build:js:e2e inline ../tests/e2e/app.e2e.js --><!-- /build -->
 
   <script>
     angular.module('sn.meta.e2e', ['ngRoute', 'sn.meta'])
@@ -74,6 +64,9 @@
             meta: {
               description: 'Page two description'
             }
+          })
+          .when('/pagethree', {
+            meta: {}
           })
           .otherwise({
             redirectTo: '/pageone'

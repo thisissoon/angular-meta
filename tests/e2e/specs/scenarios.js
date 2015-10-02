@@ -9,31 +9,31 @@ describe('sn.meta:meta', function (){
     browser.waitForAngular();
   });
 
-  // it('should load page with correct page title', function() {
-  //   expect(browser.getLocationAbsUrl()).toMatch('/pageone');
+  it('should load page with correct page title', function() {
+    expect(browser.getLocationAbsUrl()).toMatch('/pageone');
 
-  //   var titlePromise = browser.getTitle();
-  //   titlePromise.then(function (text){
-  //     expect(text).toBe('pageone - Angular Meta Example');
-  //   });
+    var getAttribute = element(by.css("meta[name=\"description\"]")).getAttribute('content');
+    getAttribute.then(function (text){
+      expect(text).toBe('Page one description');
+    });
 
-  //   browser.setLocation('/pagetwo');
-  //   expect(browser.getLocationAbsUrl()).toMatch('/pagetwo');
+    browser.setLocation('/pagetwo');
+    expect(browser.getLocationAbsUrl()).toMatch('/pagetwo');
 
-  //   titlePromise = browser.getTitle();
-  //   titlePromise.then(function (text){
-  //     expect(text).toBe('pagetwo - Angular Meta Example');
-  //   });
-  // });
+    getAttribute = element(by.css("meta[name=\"description\"]")).getAttribute('content');
+    getAttribute.then(function (text){
+      expect(text).toBe('Page two description');
+    });
+  });
 
-  // it('should load page with correct title without page title specified in route', function() {
-  //   browser.setLocation('/pagethree');
-  //   expect(browser.getLocationAbsUrl()).toMatch('/pagethree');
+  it('should clear meta data if none is specified for route', function() {
+    browser.setLocation('/pagethree');
+    expect(browser.getLocationAbsUrl()).toMatch('/pagethree');
 
-  //   var titlePromise = browser.getTitle();
-  //   titlePromise.then(function (text){
-  //     expect(text).toBe('Angular Meta Example');
-  //   });
-  // });
+    var getAttribute = element(by.css("meta[name=\"description\"]")).getAttribute('content');
+    getAttribute.then(function (text){
+      expect(text).toBe('');
+    });
+  });
 
 });

@@ -222,6 +222,18 @@ module.exports = function (grunt) {
           src: ['*.html'],
           dest: '<%= config.outputDir %>partials/'
         }]
+      },
+      e2e: {
+        files: [{
+          expand: true,
+          src: [
+            "<%= config.vendorFiles %>"
+          ],
+          dest: "<%= config.outputDir %>",
+          rename: function(dest, src) {
+            return dest + src.replace("app/","");
+          }
+        }]
       }
     },
 
