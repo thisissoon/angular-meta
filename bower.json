@@ -1,7 +1,7 @@
 {
   "name": "angular-meta",
   "description": "Angular Meta dynamically updates the document meta data when navigating views defined in ngRoute's $routeProvider.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/thisissoon/angular-meta",
   "license": "MIT",
   "main": "dist/angular-meta.js",
