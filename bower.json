@@ -1,7 +1,7 @@
 {
   "name": "angular-meta",
-  "description": "Dynamically change the page title when using ngRoute",
-  "version": "0.1.1",
+  "description": "Angular Meta dynamically updates the document meta data when navigating views defined in ngRoute's $routeProvider.",
+  "version": "0.0.1",
   "homepage": "https://github.com/thisissoon/angular-meta",
   "license": "MIT",
   "main": "dist/angular-meta.js",
