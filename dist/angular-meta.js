@@ -1,4 +1,4 @@
-/*! angular-meta - v0.1.0 - 2015-10-05 */
+/*! angular-meta - v0.1.1 - 2015-10-05 */
 'use strict';
 /**
  * Inspired by angular title {@link https://github.com/thisissoon/angular-title}
@@ -13,21 +13,21 @@
  * `<meta name="description" content="My page description">`.
  *
  * @example
-  $routeProvider
-    .when('/pageone', {
-      controller: 'pageoneCtrl'
-      meta: {
-        description: 'Page one description'
-      },
-      templateUrl: 'partials/pageone.html'
-    })
-    .when('/pagetwo', {
-      controller: 'pagetwoCtrl'
-      meta: {
-        description: 'Page two description'
-      },
-      templateUrl: 'partials/pagetwo.html'
-    })
+    $routeProvider
+      .when('/pageone', {
+        controller: 'pageoneCtrl'
+        meta: {
+          description: 'Page one description'
+        },
+        templateUrl: 'partials/pageone.html'
+      })
+      .when('/pagetwo', {
+        controller: 'pagetwoCtrl'
+        meta: {
+          description: 'Page two description'
+        },
+        templateUrl: 'partials/pagetwo.html'
+      })
  * @main   sn.meta
  * @module sn.meta
  * @author SOON_
@@ -143,9 +143,11 @@ angular.module('sn.meta', ['ngRoute'])
  * @example
     angular.module('myApp', ['sn.meta'])
       .controller('MyCtrl',[
-        'snTitle',
-        function (snTitle){
-          snTitle.setPageTitle('My Page');
+        'snMeta',
+        function (snMeta){
+          snMeta.setMetaContent({
+            description: 'My page description'
+          });
         }
       ])
  * @class  snMeta
