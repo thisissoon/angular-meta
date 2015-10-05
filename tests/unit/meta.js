@@ -47,6 +47,56 @@ describe('sn.meta:meta directive', function() {
       expect(element.attr('content')).not.toEqual('some content');
     });
   });
+
+  describe('property as key', function() {
+
+    beforeEach(inject(function (_$rootScope_, $compile, $injector) {
+
+      element = '<meta property="description" content="Page description. No longer than 155 characters." />';
+
+      element = $compile(element)($scope);
+      $scope.$digest();
+
+    }));
+
+    it('should render directive with correct meta data', function(){
+      $rootScope.$broadcast("$routeChangeSuccess", {
+        $$route: {
+          meta: {
+            description: 'pageone description'
+          }
+        }
+      })
+      expect(element.attr('content')).toEqual('pageone description');
+
+    });
+
+  });
+
+  describe('itemprop as key', function() {
+
+    beforeEach(inject(function (_$rootScope_, $compile, $injector) {
+
+      element = '<meta itemprop="description" content="Page description. No longer than 155 characters." />';
+
+      element = $compile(element)($scope);
+      $scope.$digest();
+
+    }));
+
+    it('should render directive with correct meta data', function(){
+      $rootScope.$broadcast("$routeChangeSuccess", {
+        $$route: {
+          meta: {
+            description: 'pageone description'
+          }
+        }
+      })
+      expect(element.attr('content')).toEqual('pageone description');
+
+    });
+
+  });
 });
 
 describe('sn.meta:snMeta service', function() {
