@@ -34,10 +34,11 @@
 angular.module('sn.meta', ['ngRoute'])
 /**
  * @constant
- * @property EVENTS
+ * @property snMetaEvents
  * @type     {Object}
  */
-.constant('EVENTS', {
+.constant('snMetaEvents', {
+  SET_META: 'sn:meta:setMeta',
   ROUTE_CHANGE_SUCCESS: '$routeChangeSuccess',
   ROUTE_CHANGE_ERROR: '$routeChangeError'
 })
@@ -52,17 +53,31 @@ angular.module('sn.meta', ['ngRoute'])
  */
 .directive('meta', [
   '$rootScope',
-  'EVENTS',
+  'snMetaEvents',
   /**
    * @constructor
    * @param {Service} $rootScope
-   * @param {String}  EVENTS
+   * @param {String}  snMetaEvents
    */
-  function ($rootScope, EVENTS) {
+  function ($rootScope, snMetaEvents) {
     return {
       restrict: 'E',
       scope: {},
       link: function ($scope, $element, $attrs) {
+
+        /**
+         * @method setMeta
+         * @param  {event}  $event - '$routeChangeSuccess' event from ngRoute service
+         * @param  {Object} meta   - The requested route object
+         */
+        var setMeta = function setMeta(event, meta){
+
+          if ( meta[$attrs.name] ) {
+            $element.attr('content', meta[$attrs.name]);
+          }
+
+        };
+
 
         /**
          * Update the content of the title element to the value
@@ -95,10 +110,55 @@ angular.module('sn.meta', ['ngRoute'])
           $element.attr('content', '');
         };
 
-        $rootScope.$on(EVENTS.ROUTE_CHANGE_SUCCESS, onRouteChangeSuccess);
-        $rootScope.$on(EVENTS.ROUTE_CHANGE_ERROR, onRouteChangeError);
+        $rootScope.$on(snMetaEvents.SET_META, setMeta);
+        $rootScope.$on(snMetaEvents.ROUTE_CHANGE_SUCCESS, onRouteChangeSuccess);
+        $rootScope.$on(snMetaEvents.ROUTE_CHANGE_ERROR, onRouteChangeError);
 
       }
     };
   }
-]);
+])
+/**
+ * Service that sets the meta tags of the document
+ * @example
+     angular.module('myApp', ['sn.meta'])
+       .config([
+         'snMetaProvider',
+         function(snMetaProvider){
+           snTitleProvider.setSiteTitle('My Site Name');
+         }
+       ])
+       .controller('myCtrl',[
+         'snMeta',
+         function (snMeta){
+           snMeta.setPageTitle('My Page');
+         }
+       ])
+ * @class  snMeta
+ * @module sn.meta
+ * @author SOON_
+ */
+.provider('snMeta', function() {
+  /**
+   * @property $get
+   * @type     {Array}
+   */
+  this.$get = [
+    '$rootScope',
+    'snMetaEvents',
+    function ($rootScope, snMetaEvents) {
+      return {
+        /**
+         * Set the content attribute of a meta element directive.
+         * Broadcasts an event which is being listen to by meta directives
+         * @method setMetaContent
+         * @param  {Object} meta - Key/pair values where the key should match the
+         *                         name attribute of the meta data to update
+         */
+        setMetaContent: function setMetaContent(meta){
+          $rootScope.$broadcast(snMetaEvents.SET_META, meta);
+        }
+      };
+    }
+  ];
+});
