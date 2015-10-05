@@ -1,7 +1,7 @@
 # Angular Meta
 
 [![Build Status](https://travis-ci.org/thisissoon/angular-meta.svg?branch=master)](https://travis-ci.org/thisissoon/angular-meta)
-[![Coverage Status](https://coveralls.io/repos/thisissoon/angular-meta/badge.svg)](https://coveralls.io/r/thisissoon/angular-meta)
+[![Coverage Status](https://coveralls.io/repos/thisissoon/angular-meta/badge.svg?branch=master&service=github)](https://coveralls.io/github/thisissoon/angular-meta?branch=master)
 
 <!-- [![Sauce Test Status](https://saucelabs.com/browser-matrix/angular-meta.svg)](https://saucelabs.com/u/angular-meta) -->
 
