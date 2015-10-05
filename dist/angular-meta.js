@@ -1,4 +1,4 @@
-/*! angular-meta - v0.0.0 - 2015-10-05 */
+/*! angular-meta - v0.0.1 - 2015-10-05 */
 'use strict';
 /**
  * Inspired by angular title {@link https://github.com/thisissoon/angular-title}
