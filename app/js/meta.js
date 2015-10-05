@@ -66,13 +66,33 @@ angular.module('sn.meta', ['ngRoute'])
       link: function ($scope, $element, $attrs) {
 
         /**
+         * Can be either 'name', 'itemprop' or 'property'
+         * @property keyAttr
+         * @type     {Object}
+         */
+        var keyAttr = 'name';
+
+        /**
+         * Determines whether the element using either 'name',
+         * 'itemprop' or 'property' attributes as it's key.
+         * @method findKeyValue
+         */
+        var findKeyValue = function findKeyValue() {
+          if ($attrs.property) {
+            keyAttr = 'property';
+          } else if ($attrs.itemprop) {
+            keyAttr = 'itemprop';
+          }
+        };
+
+        /**
          * @method setMeta
          * @param  {event}  $event - '$routeChangeSuccess' event from ngRoute service
          * @param  {Object} meta   - The requested route object
          */
         var setMeta = function setMeta(event, meta){
-          if ( meta[$attrs.name] ) {
-            $element.attr('content', meta[$attrs.name]);
+          if ( meta[ $attrs[keyAttr] ] ) {
+            $element.attr('content', meta[ $attrs[keyAttr] ]);
           }
         };
 
@@ -89,9 +109,9 @@ angular.module('sn.meta', ['ngRoute'])
           if (current &&
               current.$$route &&
               current.$$route.meta &&
-              current.$$route.meta[$attrs.name]
+              current.$$route.meta[ $attrs[keyAttr] ]
           ) {
-            content = current.$$route.meta[$attrs.name];
+            content = current.$$route.meta[ $attrs[keyAttr] ];
           }
 
           $element.attr('content', content);
@@ -110,6 +130,8 @@ angular.module('sn.meta', ['ngRoute'])
         $rootScope.$on(snMetaEvents.SET_META, setMeta);
         $rootScope.$on(snMetaEvents.ROUTE_CHANGE_SUCCESS, onRouteChangeSuccess);
         $rootScope.$on(snMetaEvents.ROUTE_CHANGE_ERROR, onRouteChangeError);
+
+        findKeyValue();
 
       }
     };
