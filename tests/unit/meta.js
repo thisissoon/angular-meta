@@ -1,7 +1,7 @@
 'use strict';
 
 describe('sn.meta:meta directive', function() {
-  var element, $scope, $location, $rootScope, snTitle;
+  var element, $scope, $rootScope, snTitle;
 
   beforeEach(module('sn.meta'));
 
@@ -9,8 +9,6 @@ describe('sn.meta:meta directive', function() {
     $rootScope = _$rootScope_;
 
     $scope = $rootScope.$new();
-
-    $location = $injector.get('$location');
 
     element = '<meta name="description" content="Page description. No longer than 155 characters." />';
 
@@ -47,6 +45,51 @@ describe('sn.meta:meta directive', function() {
         }
       })
       expect(element.attr('content')).not.toEqual('some content');
+    });
+  });
+});
+
+describe('sn.meta:snMeta service', function() {
+  var element, $scope, $rootScope, snMeta, eventName;
+
+  beforeEach(module('sn.meta'));
+
+  beforeEach(inject(function (_$rootScope_, $compile, $injector) {
+    $rootScope = _$rootScope_;
+
+    $scope = $rootScope.$new();
+
+    snMeta = $injector.get('snMeta');
+
+    eventName = $injector.get('snMetaEvents').SET_META;
+
+    element = '<meta name="description" content="Page description. No longer than 155 characters." />';
+
+    element = $compile(element)($scope);
+    $scope.$digest();
+
+  }));
+
+  describe('set meta using service', function() {
+
+    it('should update meta element content attribute', function(){
+      var meta = { description: 'pageone description' };
+      var spy = spyOn($rootScope, '$broadcast').and.callThrough();
+
+      snMeta.setMetaContent(meta);
+
+      expect(spy).toHaveBeenCalledWith(eventName, meta);
+      expect(element.attr('content')).toEqual('pageone description');
+    });
+
+    it('should NOT update meta element content attribute', function(){
+      var meta = { someTag: 'tag content' };
+      var spy = spyOn($rootScope, '$broadcast').and.callThrough();
+
+      snMeta.setMetaContent(meta);
+
+      expect(spy).toHaveBeenCalledWith(eventName, meta);
+      expect(element.attr('content')).not.toEqual('tag content');
     });
 
   });
