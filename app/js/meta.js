@@ -5,7 +5,7 @@
  * defined in `ngRoute`'s `$routeProvider`. Simply define the meta data of the
  * page in your `$routeProvider` config using the `meta` key.
  *
- * Add an object with the key pair values of your meta tags and the tags will be
+ * Add an object with the key pair values of your meta tags and the content
  * will be applied to the relevent meta tag e.g. if your object contained this:
  * `{ description: 'My page description' }` then the following element:
  * `<meta name="description" content="Generic site description">` would become:
@@ -71,20 +71,17 @@ angular.module('sn.meta', ['ngRoute'])
          * @param  {Object} meta   - The requested route object
          */
         var setMeta = function setMeta(event, meta){
-
           if ( meta[$attrs.name] ) {
             $element.attr('content', meta[$attrs.name]);
           }
-
         };
-
 
         /**
          * Update the content of the title element to the value
          * of the title key in the object of the current route
          * @method onRouteChangeSuccess
-         * @param {event}  $event  '$routeChangeSuccess' event from ngRoute service
-         * @param {Object} current The requested route object
+         * @param {event}  $event  - '$routeChangeSuccess' event from `ngRoute` service
+         * @param {Object} current - The requested route object
          */
         var onRouteChangeSuccess = function onRouteChangeSuccess($event, current){
           var content = '';
@@ -121,19 +118,13 @@ angular.module('sn.meta', ['ngRoute'])
 /**
  * Service that sets the meta tags of the document
  * @example
-     angular.module('myApp', ['sn.meta'])
-       .config([
-         'snMetaProvider',
-         function(snMetaProvider){
-           snTitleProvider.setSiteTitle('My Site Name');
-         }
-       ])
-       .controller('myCtrl',[
-         'snMeta',
-         function (snMeta){
-           snMeta.setPageTitle('My Page');
-         }
-       ])
+    angular.module('myApp', ['sn.meta'])
+      .controller('MyCtrl',[
+        'snTitle',
+        function (snTitle){
+          snTitle.setPageTitle('My Page');
+        }
+      ])
  * @class  snMeta
  * @module sn.meta
  * @author SOON_
