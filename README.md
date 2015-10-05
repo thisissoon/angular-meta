@@ -5,15 +5,10 @@
 
 <!-- [![Sauce Test Status](https://saucelabs.com/browser-matrix/angular-meta.svg)](https://saucelabs.com/u/angular-meta) -->
 
-Angular Meta dyamically updates the document meta when navigating views
-defined in `ngRoute`'s `$routeProvider`. Simply define the meta of the
+Angular Meta dyamically updates the document meta tags when navigating views
+defined in `ngRoute`'s `$routeProvider`. Simply define the meta data of a
 page in your `$routeProvider` config using the `meta` key and pass an object
 with key/pair values that match your meta content.
-
-<!-- If you place the name of the site inside the `title` element the directive
-will append this string to the end of the title on each page e.g.
-`<title>My Site Name</title>` would become `pageone - My Site Name` based on
-the example below. -->
 
 ## Install
 
@@ -26,65 +21,56 @@ bower install angular-meta-sn --save
 Add the angular-meta library file to your `index.html file` like so:
 
 ```html
-<script src="path/to/angular-meta/dist/angular-meta.min.js"></script>
+<script src="path/to/angular-meta-sn/dist/angular-meta.min.js"></script>
 ```
 
 Then add the module to your angular app:
 
 ```javascript
-angular.module("myApp", ["sn.meta"])
+angular.module('myApp', ['sn.meta'])
 ```
 
-<!-- ## Example Usage
+## Example Usage
 
-In your index file simply add your title element as normal:
+In your index file simply add your meta elements as normal:
 
 ```html
-<title>My Site Name</title>
+<meta name="description" content="Generic site description">
 ```
 
-Then in your angular module config use the `title` key in your $routeProvider config
+Then in your angular module config use the `meta` key in your `$routeProvider` config
 
 ```javascript
   $routeProvider
-    .when("/pageone", {
-      controller: "pageoneCtrl"
-      title: "pageone",
-      templateUrl: "partials/pageone.html"
+    .when('/pageone', {
+      controller: 'PageOneCtrl'
+      meta: {
+        description: 'Page one description'
+      },
+      templateUrl: 'partials/pageone.html'
     })
-    .when("/pagetwo", {
-      controller: "pagetwoCtrl"
-      title: "pagetwo",
-      templateUrl: "partials/pagetwo.html"
+    .when('/pagetwo', {
+      controller: 'PageTwoCtrl'
+      meta: {
+        description: 'Page two description'
+      },
+      templateUrl: 'partials/pagetwo.html'
     })
 ```
 
-You can also configure the site name in your angular app config like below as well
-as set the page title after your app config in the case that the data needed to
-set the title is not available in the `config` block:
+You can also configure a page's meta data in your controller by using the snMeta service
+in case the data you need is not available in app config:
 
 ```javascript
-angular.module("myApp", ["sn.meta"])
-  .config([
-    "snTitleProvider",
-    function(snTitleProvider){
-      snTitleProvider.setSiteTitle("My Site Name");
-    }
-  ])
-  .controller("myCtrl",[
-    "snTitle",
+angular.module('myApp', ['sn.meta'])
+  .controller('MyCtrl',[
+    'snTitle',
     function (snTitle){
-      snTitle.setPageTitle("My Page");
+      snTitle.setPageTitle('My Page');
     }
   ])
 ```
 
-If you do not require the title to be updated on each route change then you can
-disable this functionaility by setting the `update-on-page-change` attribute to `false`:
-
-```html
-<title update-on-page-change="false">My Site Name</title>
-``` -->
 
 This project structure is based on the [angular-seed](https://github.com/angular/angular-seed) application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
 
