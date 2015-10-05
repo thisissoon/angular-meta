@@ -64,9 +64,11 @@ in case the data you need is not available in app config:
 ```javascript
 angular.module('myApp', ['sn.meta'])
   .controller('MyCtrl',[
-    'snTitle',
-    function (snTitle){
-      snTitle.setPageTitle('My Page');
+    'snMeta',
+    function (snMeta){
+      snMeta.setMetaContent({
+        description: 'My page description'
+      });
     }
   ])
 ```

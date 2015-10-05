@@ -12,21 +12,21 @@
  * `<meta name="description" content="My page description">`.
  *
  * @example
-  $routeProvider
-    .when('/pageone', {
-      controller: 'pageoneCtrl'
-      meta: {
-        description: 'Page one description'
-      },
-      templateUrl: 'partials/pageone.html'
-    })
-    .when('/pagetwo', {
-      controller: 'pagetwoCtrl'
-      meta: {
-        description: 'Page two description'
-      },
-      templateUrl: 'partials/pagetwo.html'
-    })
+    $routeProvider
+      .when('/pageone', {
+        controller: 'pageoneCtrl'
+        meta: {
+          description: 'Page one description'
+        },
+        templateUrl: 'partials/pageone.html'
+      })
+      .when('/pagetwo', {
+        controller: 'pagetwoCtrl'
+        meta: {
+          description: 'Page two description'
+        },
+        templateUrl: 'partials/pagetwo.html'
+      })
  * @main   sn.meta
  * @module sn.meta
  * @author SOON_
@@ -142,9 +142,11 @@ angular.module('sn.meta', ['ngRoute'])
  * @example
     angular.module('myApp', ['sn.meta'])
       .controller('MyCtrl',[
-        'snTitle',
-        function (snTitle){
-          snTitle.setPageTitle('My Page');
+        'snMeta',
+        function (snMeta){
+          snMeta.setMetaContent({
+            description: 'My page description'
+          });
         }
       ])
  * @class  snMeta
