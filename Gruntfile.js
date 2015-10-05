@@ -193,6 +193,7 @@ module.exports = function (grunt) {
         sourceMap: false,
         sourceMapIncludeSources: true,
         enclose: { window: 'window' },
+        quoteStyle: 1,
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
           '<%= grunt.template.today(\'yyyy-mm-dd\') %> */\n'
       },
