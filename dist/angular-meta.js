@@ -1,4 +1,4 @@
-/*! angular-meta - v0.1.1 - 2015-10-05 */
+/*! angular-meta - v0.1.2 - 2015-11-25 */
 'use strict';
 /**
  * Inspired by angular title {@link https://github.com/thisissoon/angular-title}
@@ -113,9 +113,8 @@ angular.module('sn.meta', ['ngRoute'])
               current.$$route.meta[ $attrs[keyAttr] ]
           ) {
             content = current.$$route.meta[ $attrs[keyAttr] ];
+            $element.attr('content', content);
           }
-
-          $element.attr('content', content);
         };
 
         /**
