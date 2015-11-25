@@ -45,6 +45,8 @@ describe('sn.meta:meta directive', function() {
         }
       })
       expect(element.attr('content')).not.toEqual('some content');
+      expect(element.attr('content')).not.toEqual('');
+      expect(element.attr('content')).toEqual('Page description. No longer than 155 characters.');
     });
   });
 
