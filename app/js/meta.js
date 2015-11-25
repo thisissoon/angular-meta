@@ -112,9 +112,8 @@ angular.module('sn.meta', ['ngRoute'])
               current.$$route.meta[ $attrs[keyAttr] ]
           ) {
             content = current.$$route.meta[ $attrs[keyAttr] ];
+            $element.attr('content', content);
           }
-
-          $element.attr('content', content);
         };
 
         /**
